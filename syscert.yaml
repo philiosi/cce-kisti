@@ -1,0 +1,106 @@
+---
+- hosts: syscert
+  tasks:
+    - name: /etc/hosts file ownership & permission 
+      ansible.builtin.file:
+        path: /etc/hosts
+        owner: root
+        group: root
+        mode: '0600'
+    - name: /etc/xinetd.conf, /etc/xinetd.d/* file/directory ownership & permission 
+      ansible.builtin.file:
+        path: /etc/xinetd.d/
+        owner: root
+        group: root
+        mode: '0600'
+        recurse: true
+    - name: /sbin/unix_chkpwd file remove suid
+      ansible.builtin.file:
+        path: /sbin/unix_chkpwd
+        mode: -s
+    - name: /usr/bin/at file remove suid
+      ansible.builtin.file:
+        path: /usr/bin/at
+        mode: -s
+    - name: /usr/bin/newgrp remove suid
+      ansible.builtin.file:
+        path: /usr/bin/newgrp
+        mode: -s
+    - name: /etc/at.deny other -r
+      ansible.builtin.file:
+        path: /etc/at.deny
+        mode: '640'
+#    - name: /usr/bin/su 
+#      ansible.builtin.file:
+#        path: /usr/bin/su
+#        group: wheel
+#        mode: '4750'
+    - name: /bin/su
+      ansible.builtin.file:
+        path: /bin/su
+        group: wheel
+        mode: '4750'
+    - name: Set Password Expiration Days
+      ansible.builtin.lineinfile:
+        path: '/etc/login.defs'
+        regexp: '^PASS_MAX_DAYS[\s\x20]*[0-9]*'
+        line: "PASS_MAX_DAYS 90"
+        state: present
+    - name: Set Password Min Days
+      ansible.builtin.lineinfile:
+        path: '/etc/login.defs'
+        regexp: '^PASS_MIN_DAYS[\s\x20]*[0-9]*'
+        line: "PASS_MIN_DAYS 1"
+        state: present
+    - name: Set Password Min Length
+      ansible.builtin.lineinfile:
+        path: '/etc/login.defs'
+        regexp: '^PASS_MIN_LEN[\s\x20]*[0-9]*'
+        line: "PASS_MIN_LEN 8"
+        state: present
+
+    # File and Directory Mgmt. : U-303 / medium
+    - name: Ensure umask 022 in /etc/profile
+      ansible.builtin.lineinfile:
+        path: '/etc/profile'      
+        line: "umask 022"
+        state: present
+    - name: Export umask
+      ansible.builtin.lineinfile:
+        path: '/etc/profile'
+        insertafter: '^umask 022'
+        line: "export umask"
+    
+    # Access Mgmt. : U-306 / low
+    - name: Ensure session timeout 600s
+      ansible.builtin.lineinfile:
+        path: '/etc/profile'
+        line: "TMOUT=600"
+        state: present
+
+    - name: Export TMOUT
+      ansible.builtin.lineinfile:
+        path: '/etc/profile'
+        insertafter: '^TMOUT=600'
+        line: "export TMOUT"
+    
+    # Service Mgmt. : U-201 / low
+    - name: Ensure Server Logon message
+      ansible.builtin.lineinfile:
+        path: '/etc/motd'
+        insertbefore: BOF
+        line: "-- WARNING -- This system is for the use of authorized users only. Individuals using this computer system without authority or in excess of their authority are subject to having all their activities on this system monitored and recorded by system personnel. Anyone using this system expressly consents to such monitoring and is advised that if such monitoring reveals possible evidence of criminal activity system personal may provide the evidence of such monitoring to law enforcement officials."
+        state: present
+
+    - name: Ensure Telnet Logon message
+      ansible.builtin.lineinfile:
+        path: '/etc/issue.net'
+        line: "-- WARNING -- This system is for the use of authorized users only. Individuals using this computer system without authority or in excess of their authority are subject to having all their activities on this system monitored and recorded by system personnel. Anyone using this system expressly consents to such monitoring and is advised that if such monitoring reveals possible evidence of criminal activity system personal may provide the evidence of such monitoring to law enforcement officials."
+        state: present
+
+    #  Service Management : U-314 / medium
+    - name: Ensure ftp shell false
+      ansible.builtin.replace:
+        path: '/etc/passwd'
+        regexp: '^ftp(.*)\/sbin\/nologin$'
+        replace: 'ftp\1/bin/false'

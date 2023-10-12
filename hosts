@@ -1,0 +1,234 @@
+[ce]
+alice-t1-ce04.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-ce05.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-ce06.sdfarm.kr ansible_user=root ansible_port=22
+
+[wn]
+awn1001.sdfarm.kr ansible_user=root ansible_port=22
+awn1002.sdfarm.kr ansible_user=root ansible_port=22
+awn1003.sdfarm.kr ansible_user=root ansible_port=22
+awn1004.sdfarm.kr ansible_user=root ansible_port=22
+awn1005.sdfarm.kr ansible_user=root ansible_port=22
+awn1006.sdfarm.kr ansible_user=root ansible_port=22
+awn1007.sdfarm.kr ansible_user=root ansible_port=22
+awn1008.sdfarm.kr ansible_user=root ansible_port=22
+awn1009.sdfarm.kr ansible_user=root ansible_port=22
+awn1010.sdfarm.kr ansible_user=root ansible_port=22
+awn1011.sdfarm.kr ansible_user=root ansible_port=22
+awn1012.sdfarm.kr ansible_user=root ansible_port=22
+awn1013.sdfarm.kr ansible_user=root ansible_port=22
+awn1014.sdfarm.kr ansible_user=root ansible_port=22
+awn1015.sdfarm.kr ansible_user=root ansible_port=22
+awn1016.sdfarm.kr ansible_user=root ansible_port=22
+awn1017.sdfarm.kr ansible_user=root ansible_port=22
+awn1018.sdfarm.kr ansible_user=root ansible_port=22
+awn1019.sdfarm.kr ansible_user=root ansible_port=22
+awn1020.sdfarm.kr ansible_user=root ansible_port=22
+awn1021.sdfarm.kr ansible_user=root ansible_port=22
+awn1022.sdfarm.kr ansible_user=root ansible_port=22
+awn1023.sdfarm.kr ansible_user=root ansible_port=22
+awn1024.sdfarm.kr ansible_user=root ansible_port=22
+awn1025.sdfarm.kr ansible_user=root ansible_port=22
+awn1026.sdfarm.kr ansible_user=root ansible_port=22
+awn1027.sdfarm.kr ansible_user=root ansible_port=22
+awn1028.sdfarm.kr ansible_user=root ansible_port=22
+awn1029.sdfarm.kr ansible_user=root ansible_port=22
+awn1030.sdfarm.kr ansible_user=root ansible_port=22
+awn1031.sdfarm.kr ansible_user=root ansible_port=22
+awn1032.sdfarm.kr ansible_user=root ansible_port=22
+awn1033.sdfarm.kr ansible_user=root ansible_port=22
+awn1034.sdfarm.kr ansible_user=root ansible_port=22
+awn1035.sdfarm.kr ansible_user=root ansible_port=22
+awn1036.sdfarm.kr ansible_user=root ansible_port=22
+awn1037.sdfarm.kr ansible_user=root ansible_port=22
+awn1038.sdfarm.kr ansible_user=root ansible_port=22
+awn1039.sdfarm.kr ansible_user=root ansible_port=22
+awn1040.sdfarm.kr ansible_user=root ansible_port=22
+awn1041.sdfarm.kr ansible_user=root ansible_port=22
+awn1042.sdfarm.kr ansible_user=root ansible_port=22
+awn1043.sdfarm.kr ansible_user=root ansible_port=22
+awn1044.sdfarm.kr ansible_user=root ansible_port=22
+awn1045.sdfarm.kr ansible_user=root ansible_port=22
+awn1046.sdfarm.kr ansible_user=root ansible_port=22
+awn1047.sdfarm.kr ansible_user=root ansible_port=22
+awn1048.sdfarm.kr ansible_user=root ansible_port=22
+awn1049.sdfarm.kr ansible_user=root ansible_port=22
+awn1050.sdfarm.kr ansible_user=root ansible_port=22
+awn1051.sdfarm.kr ansible_user=root ansible_port=22
+awn1052.sdfarm.kr ansible_user=root ansible_port=22
+awn1053.sdfarm.kr ansible_user=root ansible_port=22
+awn1054.sdfarm.kr ansible_user=root ansible_port=22
+awn1055.sdfarm.kr ansible_user=root ansible_port=22
+awn1056.sdfarm.kr ansible_user=root ansible_port=22
+awn1057.sdfarm.kr ansible_user=root ansible_port=22
+awn1058.sdfarm.kr ansible_user=root ansible_port=22
+awn1059.sdfarm.kr ansible_user=root ansible_port=22
+awn1060.sdfarm.kr ansible_user=root ansible_port=22
+awn1061.sdfarm.kr ansible_user=root ansible_port=22
+awn1062.sdfarm.kr ansible_user=root ansible_port=22
+awn1063.sdfarm.kr ansible_user=root ansible_port=22
+awn1064.sdfarm.kr ansible_user=root ansible_port=22
+awn1065.sdfarm.kr ansible_user=root ansible_port=22
+awn1066.sdfarm.kr ansible_user=root ansible_port=22
+awn1067.sdfarm.kr ansible_user=root ansible_port=22
+awn1068.sdfarm.kr ansible_user=root ansible_port=22
+awn1069.sdfarm.kr ansible_user=root ansible_port=22
+awn1070.sdfarm.kr ansible_user=root ansible_port=22
+awn1071.sdfarm.kr ansible_user=root ansible_port=22
+awn1072.sdfarm.kr ansible_user=root ansible_port=22
+awn1073.sdfarm.kr ansible_user=root ansible_port=22
+awn1074.sdfarm.kr ansible_user=root ansible_port=22
+awn1075.sdfarm.kr ansible_user=root ansible_port=22
+awn1076.sdfarm.kr ansible_user=root ansible_port=22
+awn1077.sdfarm.kr ansible_user=root ansible_port=22
+awn1078.sdfarm.kr ansible_user=root ansible_port=22
+awn1079.sdfarm.kr ansible_user=root ansible_port=22
+awn1080.sdfarm.kr ansible_user=root ansible_port=22
+awn1081.sdfarm.kr ansible_user=root ansible_port=22
+awn1082.sdfarm.kr ansible_user=root ansible_port=22
+awn1083.sdfarm.kr ansible_user=root ansible_port=22
+awn1084.sdfarm.kr ansible_user=root ansible_port=22
+awn1085.sdfarm.kr ansible_user=root ansible_port=22
+awn1086.sdfarm.kr ansible_user=root ansible_port=22
+awn1087.sdfarm.kr ansible_user=root ansible_port=22
+awn1088.sdfarm.kr ansible_user=root ansible_port=22
+awn1089.sdfarm.kr ansible_user=root ansible_port=22
+awn1090.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3001.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3002.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3003.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3004.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3005.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3006.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3007.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3008.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3009.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3010.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3011.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3012.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3013.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3014.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3015.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3016.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3017.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3019.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3020.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn4001.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn4002.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn4003.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn4004.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn4005.sdfarm.kr ansible_user=root ansible_port=22
+
+[vobox]
+alice-t1-vobox02.sdfarm.kr ansible_user=root ansible_port=22
+
+[bdii]
+alice-t1-sbdii02.sdfarm.kr ansible_user=root ansible_port=22
+
+[apel]
+alice-t1-apel02.sdfarm.kr ansible_user=root ansible_port=22
+
+[squid]
+alice-t1-squid01.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-squid02.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-squid03.sdfarm.kr ansible_user=root ansible_port=22
+
+[eos_rbod]
+jbod-mgmt-10.sdfarm.kr ansible_user=root ansible_port=22
+rbod-mgmt-01.sdfarm.kr ansible_user=root ansible_port=22
+
+[eos_disk_mgm]
+alice-t1-eos-mgm01.sdfarm.kr ansible_user=root ansible_port=22
+#alice-t1-eos-mgm02.sdfarm.kr ansible_user=root ansible_port=22
+
+[eos_disk_fst]
+alice-t1-eos01.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-eos02.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-eos03.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-eos04.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-eos05.sdfarm.kr ansible_user=root ansible_port=22
+
+[xrootd_disk_redirector]
+alice-t1-xrdr01.sdfarm.kr ansible_user=root ansible_port=22
+
+[xrootd_disk_server]
+alice-t1-xrds01.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-xrds02.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-xrds03.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-xrds04.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-xrds05.sdfarm.kr ansible_user=root ansible_port=22
+
+[xrootd_tape_redirector]
+xht1201.sdfarm.kr ansible_user=root ansible_port=22
+
+[xrootd_tape_redirector]
+xpt1201.sdfarm.kr ansible_user=root ansible_port=22
+xpt1202.sdfarm.kr ansible_user=root ansible_port=22
+xpt1203.sdfarm.kr ansible_user=root ansible_port=22
+xpt1204.sdfarm.kr ansible_user=root ansible_port=22
+xpt1205.sdfarm.kr ansible_user=root ansible_port=22
+xpt1206.sdfarm.kr ansible_user=root ansible_port=22
+xpt1207.sdfarm.kr ansible_user=root ansible_port=22
+xpt1208.sdfarm.kr ansible_user=root ansible_port=22
+xpt1209.sdfarm.kr ansible_user=root ansible_port=22
+xpt1210.sdfarm.kr ansible_user=root ansible_port=22
+xpt1211.sdfarm.kr ansible_user=root ansible_port=22
+xpt1212.sdfarm.kr ansible_user=root ansible_port=22
+xpt1213.sdfarm.kr ansible_user=root ansible_port=22
+xpt1214.sdfarm.kr ansible_user=root ansible_port=22
+xpt1215.sdfarm.kr ansible_user=root ansible_port=22
+xpt1216.sdfarm.kr ansible_user=root ansible_port=22
+xpt1217.sdfarm.kr ansible_user=root ansible_port=22
+xpt1218.sdfarm.kr ansible_user=root ansible_port=22
+xpt1219.sdfarm.kr ansible_user=root ansible_port=22
+xpt1220.sdfarm.kr ansible_user=root ansible_port=22
+
+[gpfs]
+tp01.sdfarm.kr ansible_user=root ansible_port=22
+tp02.sdfarm.kr ansible_user=root ansible_port=22
+tp03.sdfarm.kr ansible_user=root ansible_port=22
+tp04.sdfarm.kr ansible_user=root ansible_port=22
+tp05.sdfarm.kr ansible_user=root ansible_port=22
+tp06.sdfarm.kr ansible_user=root ansible_port=22
+tp07.sdfarm.kr ansible_user=root ansible_port=22
+tp08.sdfarm.kr ansible_user=root ansible_port=22
+
+[tsm]
+th01.sdfarm.kr ansible_user=root ansible_port=22
+
+[CDS]
+jbod-mgmt-01.sdfarm.kr ansible_user=root ansible_port=22
+jbod-mgmt-02.sdfarm.kr ansible_user=root ansible_port=22
+jbod-mgmt-03.sdfarm.kr ansible_user=root ansible_port=22
+jbod-mgmt-04.sdfarm.kr ansible_user=root ansible_port=22
+jbod-mgmt-05.sdfarm.kr ansible_user=root ansible_port=22
+jbod-mgmt-06.sdfarm.kr ansible_user=root ansible_port=22
+jbod-mgmt-07.sdfarm.kr ansible_user=root ansible_port=22
+jbod-mgmt-08.sdfarm.kr ansible_user=root ansible_port=22
+jbod-mgmt-09.sdfarm.kr ansible_user=root ansible_port=22
+
+[ovirt]
+alice-ovirt-01.sdfarm.kr ansible_user=root ansible_port=22
+alice-ovirt-02.sdfarm.kr ansible_user=root ansible_port=22
+alice-ovirt-03.sdfarm.kr ansible_user=root ansible_port=22
+
+[syscert]
+awn1001.sdfarm.kr ansible_user=root ansible_port=22
+awn1002.sdfarm.kr ansible_user=root ansible_port=22
+awn1003.sdfarm.kr ansible_user=root ansible_port=22
+awn1004.sdfarm.kr ansible_user=root ansible_port=22
+awn1053.sdfarm.kr ansible_user=root ansible_port=22
+awn1054.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-eos01.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3001.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3002.sdfarm.kr ansible_user=root ansible_port=22
+jbod-mgmt-01.sdfarm.kr ansible_user=root ansible_port=22
+alice-ovirt-01.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn4001.sdfarm.kr ansible_user=root ansible_port=22
+kiaf-ui.sdfarm.kr ansible_user=root ansible_port=22
+kiaf-wn1001.sdfarm.kr ansible_user=root ansible_port=22
+kiaf-xrd01.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-xrds01.sdfarm.kr ansible_user=root ansible_port=22
+fcc.sdfarm.kr ansible_user=root ansible_port=22
+fcc-01.sdfarm.kr ansible_user=root ansible_port=22
+alice-t1-wn3001.sdfarm.kr ansible_user=root ansible_port=22
