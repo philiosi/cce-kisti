@@ -83,29 +83,22 @@
         recurse: true
     
     # Permissions Mgmt. : U-406 / high
-    - name: /sbin/unix_chkpwd file remove suid
+    - name: remove suid
       ansible.builtin.file:
-        path: /sbin/unix_chkpwd
+        path: "{{ suid.path }}"
         mode: -s
-    - name: /usr/bin/at file remove suid
-      ansible.builtin.file:
-        path: /usr/bin/at
-        mode: -s
-    - name: /usr/bin/newgrp remove suid
-      ansible.builtin.file:
-        path: /usr/bin/newgrp
-        mode: -s
-    
+      loop:
+        - { path: '/sbin/unix_chkpwd' } 
+        - { path: '/usr/bin/at' }
+        - { path: '/usr/bin/newgrp' }
+      loop_control:
+        loop_var: suid
+
     # Service Mgmt. : U-315 / medium
     - name: /etc/at.deny other -r 
       ansible.builtin.file:
         path: /etc/at.deny
         mode: '640'
-#    - name: /usr/bin/su 
-#      ansible.builtin.file:
-#        path: /usr/bin/su
-#        group: wheel
-#        mode: '4750'
 
     # account Mgmt. : U-304 / high
     - name: SU Command Restriction
@@ -127,6 +120,7 @@
         line: "PASS_MAX_DAYS 90"
         state: present
     
+    # Account Mgmt. : U-110 / medium
     - name: Set Password Min Days
       ansible.builtin.lineinfile:
         path: '/etc/login.defs'
@@ -134,6 +128,7 @@
         line: "PASS_MIN_DAYS 1"
         state: present
 
+    # Account Mgmt. : U-110 / medium
     - name: Set Password Min Length
       ansible.builtin.lineinfile:
         path: '/etc/login.defs'
@@ -147,7 +142,6 @@
         path: '/etc/profile'      
         line: "umask 022"
         state: present
-    
     - name: Export umask
       ansible.builtin.lineinfile:
         path: '/etc/profile'
