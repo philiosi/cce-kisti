@@ -1,12 +1,79 @@
 ---
-- hosts: syscert
+#- hosts: syscert
+- hosts: localhost
   tasks:
+
+    # Account Mgmt. : U-103 / high
+    - name : Remove unnecessary account
+      ansible.builtin.file:
+        path: /etc/passwd
+        regexp: '^{{ account }}:'
+        state: absent
+      loop:
+        - adm
+        - lp
+        - shutdown
+        - halt
+        - news
+        - uucp
+        - operator
+        - games
+        - gopher
+        - ftp
+        - video
+        - tape
+        - audio
+        - floppy
+        - dialout
+      loop_control:
+        loop_var: account
+    
+    # Account Mgmt. : U-112 / law
+    - name : Remove unnecessary group
+      ansible.builtin.file:
+        path: /etc/group
+        regexp: '^{{ group }}:'
+        state: absent
+      loop:
+        - sys
+        - tty
+        - disk
+        - mem
+        - kmem
+        - cdrom
+        - man
+        - dialout
+        - floppy
+        - games
+        - tape
+        - video
+        - lock
+        - audio
+        - utmp
+        - utempter
+        - input
+        - systemd-journal
+        - ssh_keys
+        - postdrop
+        - screen
+        - printadmin
+        - cgred
+        - docker
+        - stapusr
+        - stapsys
+        - stapdev
+      loop_control:
+        loop_var: group
+
+    # File and Directory Mgmt. : U-403 / high
     - name: /etc/hosts file ownership & permission 
       ansible.builtin.file:
         path: /etc/hosts
         owner: root
         group: root
         mode: '0600'
+
+    # File and Directory Mgmt. : U-404 / high
     - name: /etc/xinetd.conf, /etc/xinetd.d/* file/directory ownership & permission 
       ansible.builtin.file:
         path: /etc/xinetd.d/
@@ -14,6 +81,8 @@
         group: root
         mode: '0600'
         recurse: true
+    
+    # Permissions Mgmt. : U-406 / high
     - name: /sbin/unix_chkpwd file remove suid
       ansible.builtin.file:
         path: /sbin/unix_chkpwd
@@ -26,7 +95,9 @@
       ansible.builtin.file:
         path: /usr/bin/newgrp
         mode: -s
-    - name: /etc/at.deny other -r
+    
+    # Service Mgmt. : U-315 / medium
+    - name: /etc/at.deny other -r 
       ansible.builtin.file:
         path: /etc/at.deny
         mode: '640'
@@ -35,23 +106,34 @@
 #        path: /usr/bin/su
 #        group: wheel
 #        mode: '4750'
-    - name: /bin/su
+
+    # account Mgmt. : U-304 / high
+    - name: SU Command Restriction
       ansible.builtin.file:
-        path: /bin/su
+        path: "{{ su.path }}"
         group: wheel
         mode: '4750'
+      loop:
+        - { path: '/bin/su' }
+        - { path: '/usr/bin/su' }
+      loop_control:
+        loop_var: su    
+    
+    # Account Mgmt. : U-104 / medium
     - name: Set Password Expiration Days
       ansible.builtin.lineinfile:
         path: '/etc/login.defs'
         regexp: '^PASS_MAX_DAYS[\s\x20]*[0-9]*'
         line: "PASS_MAX_DAYS 90"
         state: present
+    
     - name: Set Password Min Days
       ansible.builtin.lineinfile:
         path: '/etc/login.defs'
         regexp: '^PASS_MIN_DAYS[\s\x20]*[0-9]*'
         line: "PASS_MIN_DAYS 1"
         state: present
+
     - name: Set Password Min Length
       ansible.builtin.lineinfile:
         path: '/etc/login.defs'
@@ -65,6 +147,7 @@
         path: '/etc/profile'      
         line: "umask 022"
         state: present
+    
     - name: Export umask
       ansible.builtin.lineinfile:
         path: '/etc/profile'
