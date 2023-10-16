@@ -4,7 +4,6 @@
 # check before run : ansible-playbook your-playbook.yml --check
 
 - hosts: localhost
-  tasks:
   vars:
     U103_remove_account: false    # Account Mgmt. : U-103 / high
     U112_remove_group: false      # Account Mgmt. : U-112 / law
@@ -22,7 +21,8 @@
     U201_server_logon_msg: false   # Service Mgmt. : U-201 / low
     U201_telnet_logon_msg: false   # Service Mgmt. : U-201 / low
     U314_ftp_shell_false: false    # Service Management : U-314 / medium
-    
+  
+  tasks:
     # Account Mgmt. : U-103 / high
     - name : Remove unnecessary account
       ansible.builtin.file:
