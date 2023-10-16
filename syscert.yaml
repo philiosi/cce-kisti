@@ -12,7 +12,7 @@
 #- hosts: syscert                 # based on the 'hosts' file with target 'syscert' 
 - hosts: localhost
   vars:
-    U103_remove_account: true    # Account Mgmt. : U-103 / high              / tags: U103_tag
+    U103_remove_account: true    # Account Mgmt. : U-103 / high               / tags: U103_tag
     U112_remove_group: false      # Account Mgmt. : U-112 / law               / tags: U112_tag
     U403_hosts_permission: true   # File and Directory Mgmt. : U-403 / high   / tags: U403_tag
     U404_xinetd_perission: true   # File and Directory Mgmt. : U-404 / high   / tags: U404_tag
