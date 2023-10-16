@@ -1,8 +1,7 @@
 ---
-#- hosts: syscert
+# dry-run to check modification: ansible-playbook your-playbook.yml --check --diff
 
-# check before run : ansible-playbook your-playbook.yml --check
-
+#- hosts: syscert                 # based on the 'hosts' with 'syscert' tag
 - hosts: localhost
   vars:
     U103_remove_account: false    # Account Mgmt. : U-103 / high
@@ -10,8 +9,8 @@
     U403_hosts_permission: true   # File and Directory Mgmt. : U-403 / high
     U404_xinetd_perission: true   # File and Directory Mgmt. : U-404 / high
     U406_remove_suid: true        # Permissions Mgmt. : U-406 / high'
-    U315_atdeny_permission: true  #Service Mgmt. : U-315 / medium
-    U304_su_restriction: true     # account Mgmt. : U-304 / high
+    U315_atdeny_permission: true  # Service Mgmt. : U-315 / medium
+    U304_su_restriction: true     # Account Mgmt. : U-304 / high
     U104_pwd_expiration: true     # Account Mgmt. : U-104 / medium
     U110_pwd_min_day: true        # Account Mgmt. : U-110 / medium
     U108_pwd_min_len: true        # Account Mgmt. : U-108 / medium
@@ -92,7 +91,6 @@
         mode: '640'
       when: U315_atdeny_permission
 
-    # account Mgmt. : U-304 / high
     - name: SU Command Restriction
       ansible.builtin.file:
         path: "{{ su.path }}"
@@ -191,7 +189,7 @@
       when: U201_telnet_logon_msg
       
 
-    #  Service Management : U-314 / medium
+    # Service Management : U-314 / medium
     - name: Ensure ftp shell false
       ansible.builtin.replace:
         path: '/etc/passwd'
