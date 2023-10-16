@@ -7,20 +7,20 @@
   vars:
     U103_remove_account: false    # Account Mgmt. : U-103 / high
     U112_remove_group: false      # Account Mgmt. : U-112 / law
-    U403_hosts_permission: false   # File and Directory Mgmt. : U-403 / high
-    U404_xinetd_perission: false   # File and Directory Mgmt. : U-404 / high
-    U406_remove_suid: false        # Permissions Mgmt. : U-406 / high'
-    U315_atdeny_permission: false  #Service Mgmt. : U-315 / medium
-    U304_su_restriction: false     # account Mgmt. : U-304 / high
-    U104_pwd_expiration: false     # Account Mgmt. : U-104 / medium
-    U110_pwd_min_day: false        # Account Mgmt. : U-110 / medium
-    U108_pwd_min_len: false        # Account Mgmt. : U-108 / medium
-    U303_umask_profile: false      # File and Directory Mgmt. : U-303 / medium
-    U306_set_tmout: false          # Access Mgmt. : U-306 / low
-    U306_fix_tmout: false          # To fix TMOUT readonly alert message
-    U201_server_logon_msg: false   # Service Mgmt. : U-201 / low
-    U201_telnet_logon_msg: false   # Service Mgmt. : U-201 / low
-    U314_ftp_shell_false: false    # Service Management : U-314 / medium
+    U403_hosts_permission: true   # File and Directory Mgmt. : U-403 / high
+    U404_xinetd_perission: true   # File and Directory Mgmt. : U-404 / high
+    U406_remove_suid: true        # Permissions Mgmt. : U-406 / high'
+    U315_atdeny_permission: true  #Service Mgmt. : U-315 / medium
+    U304_su_restriction: true     # account Mgmt. : U-304 / high
+    U104_pwd_expiration: true     # Account Mgmt. : U-104 / medium
+    U110_pwd_min_day: true        # Account Mgmt. : U-110 / medium
+    U108_pwd_min_len: true        # Account Mgmt. : U-108 / medium
+    U303_umask_profile: true      # File and Directory Mgmt. : U-303 / medium
+    U306_set_tmout: true          # Access Mgmt. : U-306 / low
+    U306_fix_tmout: true          # To fix TMOUT readonly alert message
+    U201_server_logon_msg: true   # Service Mgmt. : U-201 / low
+    U201_telnet_logon_msg: true   # Service Mgmt. : U-201 / low
+    U314_ftp_shell_false: true    # Service Management : U-314 / medium
   
   tasks:
     # Account Mgmt. : U-103 / high
