@@ -1,6 +1,13 @@
 ---
-# dry-run to check modification: ansible-playbook your-playbook.yml --check --diff
-# tag to run using '--tag' : ansible-playbook your-playbook.yml --tags "U103_tag"
+# dry-run to check modification:
+#   - ansible-playbook your-playbook.yml --check --diff
+
+# To run using '--tag'
+#  - set 'true' of the specific vars and 
+#  - dry-run: ansible-playbook your-playbook.yml --tags "U103_tag" --check --diff 
+#  - run: ansible-playbook your-playbook.yml --tags "U103_tag" 
+
+
 
 #- hosts: syscert                 # based on the 'hosts' file with target 'syscert' 
 - hosts: localhost
