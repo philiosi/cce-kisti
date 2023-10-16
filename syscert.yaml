@@ -200,3 +200,4 @@
         path: '/etc/passwd'
         regexp: '^ftp(.*)\/sbin\/nologin$'
         replace: 'ftp\1/bin/false'
+      when: U314_ftp_shell_false
