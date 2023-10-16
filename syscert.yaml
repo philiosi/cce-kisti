@@ -1,25 +1,26 @@
 ---
 # dry-run to check modification: ansible-playbook your-playbook.yml --check --diff
+# tag to run using '--tag' : ansible-playbook your-playbook.yml --tags "U103_tag"
 
-#- hosts: syscert                 # based on the 'hosts' with 'syscert' tag
+#- hosts: syscert                 # based on the 'hosts' file with target 'syscert' 
 - hosts: localhost
   vars:
-    U103_remove_account: false    # Account Mgmt. : U-103 / high
-    U112_remove_group: false      # Account Mgmt. : U-112 / law
-    U403_hosts_permission: true   # File and Directory Mgmt. : U-403 / high
-    U404_xinetd_perission: true   # File and Directory Mgmt. : U-404 / high
-    U406_remove_suid: true        # Permissions Mgmt. : U-406 / high'
-    U315_atdeny_permission: true  # Service Mgmt. : U-315 / medium
-    U304_su_restriction: true     # Account Mgmt. : U-304 / high
-    U104_pwd_expiration: true     # Account Mgmt. : U-104 / medium
-    U110_pwd_min_day: true        # Account Mgmt. : U-110 / medium
-    U108_pwd_min_len: true        # Account Mgmt. : U-108 / medium
-    U303_umask_profile: true      # File and Directory Mgmt. : U-303 / medium
-    U306_set_tmout: true          # Access Mgmt. : U-306 / low
-    U306_fix_tmout: true          # To fix TMOUT readonly alert message
-    U201_server_logon_msg: true   # Service Mgmt. : U-201 / low
-    U201_telnet_logon_msg: true   # Service Mgmt. : U-201 / low
-    U314_ftp_shell_false: true    # Service Management : U-314 / medium
+    U103_remove_account: true    # Account Mgmt. : U-103 / high              / tags: U103_tag
+    U112_remove_group: false      # Account Mgmt. : U-112 / law               / tags: U112_tag
+    U403_hosts_permission: true   # File and Directory Mgmt. : U-403 / high   / tags: U403_tag
+    U404_xinetd_perission: true   # File and Directory Mgmt. : U-404 / high   / tags: U404_tag
+    U406_remove_suid: true        # Permissions Mgmt. : U-406 / high          / tags: U406_tag
+    U315_atdeny_permission: true  # Service Mgmt. : U-315 / medium            / tags: U315_tag
+    U304_su_restriction: true     # Account Mgmt. : U-304 / high              / tags: U304_tag
+    U104_pwd_expiration: true     # Account Mgmt. : U-104 / medium            / tags: U104_tag
+    U110_pwd_min_day: true        # Account Mgmt. : U-110 / medium            / tags: U110_tag
+    U108_pwd_min_len: true        # Account Mgmt. : U-108 / medium            / tags: U108_tag
+    U303_umask_profile: true      # File and Directory Mgmt. : U-303 / medium / tags: U303_tag
+    U306_set_tmout: true          # Access Mgmt. : U-306 / low                / tags: U306_tag
+    U306_fix_tmout: true          # To fix TMOUT readonly alert message       / tags: U306_fix_tag
+    U201_server_logon_msg: true   # Service Mgmt. : U-201 / low               / tags: U201_server_tag
+    U201_telnet_logon_msg: true   # Service Mgmt. : U-201 / low               / tags: U201_telnet_tag
+    U314_ftp_shell_false: true    # Service Management : U-314 / medium       / tags: U314_tag
   
   tasks:
     # Account Mgmt. : U-103 / high
@@ -40,6 +41,8 @@
       loop_control:
         loop_var: account
       when: U103_remove_account
+      tags:
+        - U103_tag
     
     # Account Mgmt. : U-112 / law
     - name : Remove unnecessary group
@@ -51,6 +54,8 @@
       loop_control:
         loop_var: group
       when: U112_remove_group
+      tags:
+        - U112_tag
 
     # File and Directory Mgmt. : U-403 / high
     - name: /etc/hosts file ownership & permission 
@@ -60,6 +65,8 @@
         group: root
         mode: '0600'
       when: U403_hosts_permission
+      tags:
+        - U403_tag
 
     # File and Directory Mgmt. : U-404 / high
     - name: /etc/xinetd.conf, /etc/xinetd.d/* file/directory ownership & permission 
@@ -70,6 +77,8 @@
         mode: '0600'
         recurse: true
       when: U404_xinetd_perission
+      tags:
+        - U404_tag
     
     # Permissions Mgmt. : U-406 / high
     - name: remove suid
@@ -83,6 +92,8 @@
       loop_control:
         loop_var: suid
       when: U406_remove_suid
+      tags:
+        - U406_tag
 
     # Service Mgmt. : U-315 / medium
     - name: /etc/at.deny other -r 
@@ -102,6 +113,8 @@
       loop_control:
         loop_var: su
       when: U304_su_restriction
+      tags:
+        - U315_tag
     
     # Account Mgmt. : U-104 / medium
     - name: Set Password Expiration Days
@@ -111,6 +124,8 @@
         line: "PASS_MAX_DAYS 90"
         state: present
       when: U104_pwd_expiration
+      tags:
+        - U104_tag
     
     # Account Mgmt. : U-110 / medium
     - name: Set Password Min Days
@@ -120,6 +135,8 @@
         line: "PASS_MIN_DAYS 1"
         state: present
       when: U110_pwd_min_day
+      tags:
+        - U110_tag
 
     # Account Mgmt. : U-108 / medium
     - name: Set Password Min Length
@@ -129,6 +146,8 @@
         line: "PASS_MIN_LEN 8"
         state: present
       when: U108_pwd_min_len
+      tags:
+        - U108_tag
 
     # File and Directory Mgmt. : U-303 / medium
     - name: Ensure umask 022 in /etc/profile
@@ -137,6 +156,8 @@
         line: "umask 022"
         state: present
       when: U303_umask_profile
+      tags:
+        - U303_tag
       
     - name: Export umask
       ansible.builtin.lineinfile:
@@ -144,6 +165,8 @@
         insertafter: '^umask 022'
         line: "export umask"
       when: U303_umask_profile
+      tags:
+        - U303_tag
     
     # Access Mgmt. : U-306 / low
     - name: Ensure session timeout 600s
@@ -152,6 +175,8 @@
         line: "TMOUT=600"
         state: present
       when: U306_set_tmout
+      tags:
+        - U306_tag
 
     - name: Export TMOUT
       ansible.builtin.lineinfile:
@@ -159,6 +184,8 @@
         insertafter: '^TMOUT=600'
         line: "export TMOUT"
       when: U306_set_tmout
+      tags:
+        - U306_tag
 
     # To fix TMOUT readonly alert message regarding U-306
     - name: Comment out already set TMOUT in /etc/profile.d/screen.sh
@@ -171,6 +198,8 @@
         - { regexp: '^\s(.*)export TMOUT$', replace: '#\1export TMOUT' }
         - { regexp: '^\s(.*)readonly TMOUT$', replace: '#\1readonly TMOUT' }
       when: U306_fix_tmout
+      tags:
+        - U306_fix_tag
     
     # Service Mgmt. : U-201 / low
     - name: Ensure Server Logon message
@@ -180,6 +209,8 @@
         line: "-- WARNING -- This system is for the use of authorized users only. Individuals using this computer system without authority or in excess of their authority are subject to having all their activities on this system monitored and recorded by system personnel. Anyone using this system expressly consents to such monitoring and is advised that if such monitoring reveals possible evidence of criminal activity system personal may provide the evidence of such monitoring to law enforcement officials."
         state: present
       when: U201_server_logon_msg
+      tags:
+        - U201_server_tag
 
     - name: Ensure Telnet Logon message
       ansible.builtin.lineinfile:
@@ -187,6 +218,8 @@
         line: "-- WARNING -- This system is for the use of authorized users only. Individuals using this computer system without authority or in excess of their authority are subject to having all their activities on this system monitored and recorded by system personnel. Anyone using this system expressly consents to such monitoring and is advised that if such monitoring reveals possible evidence of criminal activity system personal may provide the evidence of such monitoring to law enforcement officials."
         state: present
       when: U201_telnet_logon_msg
+      tags:
+        - U201_telnet_tag
       
 
     # Service Management : U-314 / medium
@@ -196,3 +229,5 @@
         regexp: '^ftp(.*)\/sbin\/nologin$'
         replace: 'ftp\1/bin/false'
       when: U314_ftp_shell_false
+      tags:
+        - U314_tag
