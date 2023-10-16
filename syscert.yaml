@@ -1,8 +1,28 @@
 ---
 #- hosts: syscert
+
+# check : ansible-playbook your-playbook.yml --check
+
 - hosts: localhost
   tasks:
-
+  vars:
+    U103_remove_account: false    # Account Mgmt. : U-103 / high
+    U112_remove_group: false      # Account Mgmt. : U-112 / law
+    U403_hosts_permission: false   # File and Directory Mgmt. : U-403 / high
+    U404_xinetd_perission: false   # File and Directory Mgmt. : U-404 / high
+    U406_remove_suid: false        # Permissions Mgmt. : U-406 / high'
+    U315_atdeny_permission: false  #Service Mgmt. : U-315 / medium
+    U304_su_restriction: false     # account Mgmt. : U-304 / high
+    U104_pwd_expiration: false     # Account Mgmt. : U-104 / medium
+    U110_pwd_min_day: false        # Account Mgmt. : U-110 / medium
+    U108_pwd_min_len: false        # Account Mgmt. : U-108 / medium
+    U303_umask_profile: false      # File and Directory Mgmt. : U-303 / medium
+    U306_set_tmout: false          # Access Mgmt. : U-306 / low
+    U306_fix_tmout: false          # To fix TMOUT readonly alert message
+    U201_server_logon_msg: false   # Service Mgmt. : U-201 / low
+    U201_telnet_logon_msg: false   # Service Mgmt. : U-201 / low
+    U314_ftp_shell_false: false    # Service Management : U-314 / medium
+    
     # Account Mgmt. : U-103 / high
     - name : Remove unnecessary account
       ansible.builtin.file:
@@ -12,6 +32,7 @@
       loop:
         - adm
         - lp
+        - sync
         - shutdown
         - halt
         - news
@@ -20,13 +41,9 @@
         - games
         - gopher
         - ftp
-        - video
-        - tape
-        - audio
-        - floppy
-        - dialout
       loop_control:
         loop_var: account
+      when: U103_remove_account
     
     # Account Mgmt. : U-112 / law
     - name : Remove unnecessary group
@@ -35,35 +52,9 @@
         regexp: '^{{ group }}:'
         state: absent
       loop:
-        - sys
-        - tty
-        - disk
-        - mem
-        - kmem
-        - cdrom
-        - man
-        - dialout
-        - floppy
-        - games
-        - tape
-        - video
-        - lock
-        - audio
-        - utmp
-        - utempter
-        - input
-        - systemd-journal
-        - ssh_keys
-        - postdrop
-        - screen
-        - printadmin
-        - cgred
-        - docker
-        - stapusr
-        - stapsys
-        - stapdev
       loop_control:
         loop_var: group
+      when: U112_remove_group
 
     # File and Directory Mgmt. : U-403 / high
     - name: /etc/hosts file ownership & permission 
@@ -72,6 +63,7 @@
         owner: root
         group: root
         mode: '0600'
+      when: U403_hosts_permission
 
     # File and Directory Mgmt. : U-404 / high
     - name: /etc/xinetd.conf, /etc/xinetd.d/* file/directory ownership & permission 
@@ -81,6 +73,7 @@
         group: root
         mode: '0600'
         recurse: true
+      when: U404_xinetd_perission
     
     # Permissions Mgmt. : U-406 / high
     - name: remove suid
@@ -93,12 +86,14 @@
         - { path: '/usr/bin/newgrp' }
       loop_control:
         loop_var: suid
+      when: U406_remove_suid
 
     # Service Mgmt. : U-315 / medium
     - name: /etc/at.deny other -r 
       ansible.builtin.file:
         path: /etc/at.deny
         mode: '640'
+      when: U315_atdeny_permission
 
     # account Mgmt. : U-304 / high
     - name: SU Command Restriction
@@ -110,7 +105,8 @@
         - { path: '/bin/su' }
         - { path: '/usr/bin/su' }
       loop_control:
-        loop_var: su    
+        loop_var: su
+      when: U304_su_restriction
     
     # Account Mgmt. : U-104 / medium
     - name: Set Password Expiration Days
@@ -119,6 +115,7 @@
         regexp: '^PASS_MAX_DAYS[\s\x20]*[0-9]*'
         line: "PASS_MAX_DAYS 90"
         state: present
+      when: U104_pwd_expiration
     
     # Account Mgmt. : U-110 / medium
     - name: Set Password Min Days
@@ -127,14 +124,16 @@
         regexp: '^PASS_MIN_DAYS[\s\x20]*[0-9]*'
         line: "PASS_MIN_DAYS 1"
         state: present
+      when: U110_pwd_min_day
 
-    # Account Mgmt. : U-110 / medium
+    # Account Mgmt. : U-108 / medium
     - name: Set Password Min Length
       ansible.builtin.lineinfile:
         path: '/etc/login.defs'
         regexp: '^PASS_MIN_LEN[\s\x20]*[0-9]*'
         line: "PASS_MIN_LEN 8"
         state: present
+      when: U108_pwd_min_len
 
     # File and Directory Mgmt. : U-303 / medium
     - name: Ensure umask 022 in /etc/profile
@@ -142,11 +141,14 @@
         path: '/etc/profile'      
         line: "umask 022"
         state: present
+      when: U303_umask_profile
+      
     - name: Export umask
       ansible.builtin.lineinfile:
         path: '/etc/profile'
         insertafter: '^umask 022'
         line: "export umask"
+      when: U303_umask_profile
     
     # Access Mgmt. : U-306 / low
     - name: Ensure session timeout 600s
@@ -154,12 +156,26 @@
         path: '/etc/profile'
         line: "TMOUT=600"
         state: present
+      when: U306_set_tmout
 
     - name: Export TMOUT
       ansible.builtin.lineinfile:
         path: '/etc/profile'
         insertafter: '^TMOUT=600'
         line: "export TMOUT"
+      when: U306_set_tmout
+
+    # To fix TMOUT readonly alert message regarding U-306
+    - name: Comment out already set TMOUT in /etc/profile.d/screen.sh
+      replace:
+        dest: /etc/profile.d/screen.sh
+        regexp: "{{ item.regexp }}"
+        replace: "{{ item.replace }}"
+      with_items:
+        - { regexp: '^\s(.*)TMOUT=', replace: '#\1TMOUT=' }
+        - { regexp: '^\s(.*)export TMOUT$', replace: '#\1export TMOUT' }
+        - { regexp: '^\s(.*)readonly TMOUT$', replace: '#\1readonly TMOUT' }
+      when: U306_fix_tmout
     
     # Service Mgmt. : U-201 / low
     - name: Ensure Server Logon message
@@ -168,12 +184,15 @@
         insertbefore: BOF
         line: "-- WARNING -- This system is for the use of authorized users only. Individuals using this computer system without authority or in excess of their authority are subject to having all their activities on this system monitored and recorded by system personnel. Anyone using this system expressly consents to such monitoring and is advised that if such monitoring reveals possible evidence of criminal activity system personal may provide the evidence of such monitoring to law enforcement officials."
         state: present
+      when: U201_server_logon_msg
 
     - name: Ensure Telnet Logon message
       ansible.builtin.lineinfile:
         path: '/etc/issue.net'
         line: "-- WARNING -- This system is for the use of authorized users only. Individuals using this computer system without authority or in excess of their authority are subject to having all their activities on this system monitored and recorded by system personnel. Anyone using this system expressly consents to such monitoring and is advised that if such monitoring reveals possible evidence of criminal activity system personal may provide the evidence of such monitoring to law enforcement officials."
         state: present
+      when: U201_telnet_logon_msg
+      
 
     #  Service Management : U-314 / medium
     - name: Ensure ftp shell false
