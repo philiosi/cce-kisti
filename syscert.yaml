@@ -24,7 +24,7 @@
     U108_pwd_min_len: true        # Account Mgmt. : U-108 / medium            / tags: U108_tag
     U303_umask_profile: true      # File and Directory Mgmt. : U-303 / medium / tags: U303_tag
     U306_set_tmout: true          # Access Mgmt. : U-306 / low                / tags: U306_tag
-    U306_fix_tmout: true          # To fix TMOUT readonly alert message       / tags: U306_fix_tag
+    U306_fix_tmout: false         # To fix TMOUT readonly alert message       / tags: U306_fix_tag
     U201_server_logon_msg: true   # Service Mgmt. : U-201 / low               / tags: U201_server_tag
     U201_telnet_logon_msg: true   # Service Mgmt. : U-201 / low               / tags: U201_telnet_tag
     U314_ftp_shell_false: true    # Service Management : U-314 / medium       / tags: U314_tag
