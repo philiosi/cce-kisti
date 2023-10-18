@@ -32,7 +32,7 @@
   tasks:
     # Account Mgmt. : U-103 / high
     - name : Remove unnecessary account
-      ansible.builtin.file:
+      ansible.builtin.lineinfile:
         path: /etc/passwd
         regexp: '^{{ account }}:'
         state: absent
@@ -53,9 +53,9 @@
     
     # Account Mgmt. : U-112 / law
     - name : Remove unnecessary group
-      ansible.builtin.file:
+      ansible.builtin.lineinfile:
         path: /etc/group
-        regexp: '^{{ group }}:'
+        regexp: '^{{ group }}:'.
         state: absent
       loop:
       loop_control:
