@@ -55,7 +55,7 @@
     - name : Remove unnecessary group
       ansible.builtin.lineinfile:
         path: /etc/group
-        regexp: '^{{ group }}:'.
+        regexp: '^{{ group }}:'
         state: absent
       loop:
       loop_control:
